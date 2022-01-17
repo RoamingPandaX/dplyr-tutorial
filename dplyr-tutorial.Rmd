@@ -30,7 +30,7 @@ Note: There is a 40-minute [video tutorial](https://www.youtube.com/watch?v=jWjq
 
 ```{r}
 # load packages
-suppressMessages(library(dplyr))
+library(dplyr)
 library(hflights)
 
 # explore data
@@ -43,7 +43,8 @@ head(hflights)
 
 ```{r}
 # convert to local data frame
-flights <- tbl_df(hflights)
+flights <- as_tibble(hflights)
+?as_tibble
 
 # printing only shows 10 rows and as many columns as can fit on your screen
 flights
@@ -233,6 +234,7 @@ flights %>%
 flights %>%
     group_by(Month, DayofMonth) %>%
     tally(sort = TRUE)
+?tally
 
 # for each destination, count the total number of flights and the number of distinct planes that flew there
 flights %>%
@@ -248,7 +250,7 @@ flights %>%
     group_by(Dest) %>%
     select(Cancelled) %>%
     table() %>%
-    head()
+    head(10)
 ```
 
 
